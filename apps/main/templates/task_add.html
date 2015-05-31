@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block link %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui..">
+{% endblock %}
+
+{% block content %}
+
+<form id="gettasks" action="/json/geopoints/" method="post">{% csrf_token %}
+</form>
+
+    {% include 'top_menu.html' %}
+    <div class="row">
+        <div class="col-lg-2">
+            {% include 'left_menu.html' %}
+        </div>
+       <div style="
+padding: 9px 0;
+    position: relative;
+    left:20%;
+    width:77%;
+    ">
+            
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form class="form-horizontal" id="kako" method="post" action="/task/add/" enctype="multipart/form-data" >
+    <input id="data_geojson" type="hidden" name="geojson" value=""/>
+  <fieldset>
+      {% csrf_token %}
+    <legend>New task</legend>
+    <div class="form-group">
+      <label for="type" class="col-lg-2 control-label">Type</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="type" name="type" >
+          {% for rarity in task_rarity %}
+              <option value="{{rarity.id}}" >{{rarity.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="category" class="col-lg-2 control-label">Category</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="category" name="category" >
+          {% for category in categories %}
+              <option value="{{category.id}}" >{{category.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="member_type" class="col-lg-2 control-label">Member type</label>
+      <div class="col-lg-10">
+        <select class="form-control" id="member_type" name="member_type" >
+          <option value="1" >Not more</option>
+          <option value="2" >Range</option>
+          <option value="3" >Unlimit</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="title" class="col-lg-2 control-label">Title</label>
+      <div class="col-lg-10">
+        <input id="title" class="form-control" type="text" name="title" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="text_content" class="col-lg-2 control-label" >Text content</label>
+      <div class="col-lg-10">
+        <textarea id="text_content" name="text_content" style="  color: #2b3e50;" cols="40" rows="6" ></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="video_link" class="col-lg-2 control-label">Video link</label>
+      <div class="col-lg-10">
+        <input class="form-control" type="text" id="video_link" name="video_link" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="member_min" class="col-lg-2 control-label">Members minimum</label>
+      <div class="col-lg-10">
+        <input class="form-control" type="text" id="member_min" name="members_min" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="member_max" class="col-lg-2 control-label">Members maximum</label>
+      <div class="col-lg-10">
+        <input class="form-control" type="text" id="member_max" name="members_max" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cost_need" class="col-lg-2 control-label">Cost need</label>
+      <div class="col-lg-10"><input class="form-control" type="text" id="cost_need" name="cost_need" ></div>
+    </div>
+    <div class="form-group">
+      <label for="text_content" class="col-lg-2 control-label">Minimum level</label>
+      <div class="col-lg-10"><input class="form-control" type="text" id="min_level" name="min_level" ></div>
+    </div>
+    <div class="form-group">
+      <label for="datepickers" class="col-lg-2 control-label">Date start</label>
+      <div class="col-lg-10"><input class="form-control" type="text" id="datepickers" name="date_start" ></div>
+    </div>
+    <div class="form-group">
+      <label for="datepickere" class="col-lg-2 control-label">Date finish</label>
+      <div class="col-lg-10"><input class="form-control" type="text" id="datepickere" name="date_finish" ></div>
+    </div>
+    <div class="form-group">
+      <label for="images" class="col-lg-2 control-label">Images</label>
+      <div id="images_list" class="col-lg-10">
+          <p id="images_add">Add more images</p>
+          <input class="form-control" type="file" id="images" name="images" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="text_content" class="col-lg-2 control-label">Event location</label>
+      <div class="col-lg-10" id="inputmap" style="width:500px;height:380px;"><div id="status"></div> <div id="mapcanvas"></div></div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button class="btn btn-default">Cancel</button>
+        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+  </div>
+</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+        <script> $(function() {
+                $( "#datepickers" ).datepicker();
+                $( "#datepickere" ).datepicker();
+                });
+                </script>
+
+
+        <script>
+            jQuery(document).ready(function($) {
+                  $(".clickableRow").click(function() {
+                        window.document.location = $(this).attr("href");
+                  });
+            });
+
+            jQuery(document).ready(function($) {
+                  $("#images_add").click(function() {
+                        var div = $('<input class="form-control" type="file" id="images" name="images" >');
+                        $("#images_list").append(div);
+                  });
+            });
+        </script>
+        <script src="/static/js/inputmap.js"></script> 
+
+{% endblock %}

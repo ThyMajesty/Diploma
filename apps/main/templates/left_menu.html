@@ -1,0 +1,19 @@
+{% load convert_tags %}
+<div class="list-group" style="
+padding: 9px 0;
+    position:fixed;
+    left:20px;
+    top:60px;
+    width:15%;
+    ">
+	<a href="/tasks/my" class="list-group-item {% if active_category == 'my' %}active{% endif %}">My</a>
+	<a href="/tasks/all" class="list-group-item {% if active_category == 'all' %}active{% endif %}">All</a>
+	<a href="/tasks/last" class="list-group-item {% if active_category == 'last' %}active{% endif %}">Last</a>
+	<a href="/tasks/available" class="list-group-item {% if active_category == 'available' %}active{% endif %}">Available</a>
+
+
+    {% for category in categories %}
+    	<a href="/tasks/{{category.id}}/" class="list-group-item {% if active_category|to_int == category.id %}active{% endif %}">{{category.title}}</a>
+    {% endfor %}
+
+</div>

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% include 'top_menu.html' %}
+    <div style="
+    padding: 9px 0;
+    position: relative;
+    left:2%;
+    width:96%;
+    ">
+        <h1>TOP-10</h1>
+        {% for t in top %}
+            {{t}}   {{t.current_level}}<br/>
+        {% endfor %}
+
+        <div id="rarityChart" class="container" style="width: 600px; height: 400px;"></div>
+        <div id="commentsChart" class="container" style="width: 600px; height: 400px;"></div>}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+        <script src="http://edekoodon.herokuapp.com/js/jquery-1.10.2.min.js"></script>
+        <script src="http://edekoodon.herokuapp.com/js/knockout-3.0.0.js"></script>
+        <script src="http://edekoodon.herokuapp.com/js/globalize.min.js"></script>
+        <script src="http://edekoodon.herokuapp.com/js/dx.chartjs.js"></script>
+        <script>
+        $(function ()  
+                {
+   var dataSource = [{
+        time: "January",
+        common: 3970,
+        uncommon: 15366,
+        rar: 7818,
+        epic: 9064
+    }, {
+        time: "March",
+        common: 3875,
+        uncommon: 15297,
+        rar: 7518,
+        epic: 9147
+    }, {
+        time: "June",
+        common: 4181,
+        uncommon: 15957,
+        rar: 7603,
+        epic: 9311
+    }, {
+        time: "August",
+        common: 3826,
+        uncommon: 15706,
+        rar: 8046,
+        epic: 9342
+    }, {
+        time: "October",
+        common: 3899,
+        uncommon: 14940,
+        rar: 8233,
+        epic: 9244
+    }, {
+        time: "December",
+        common: 3941,
+        uncommon: 15664,
+        rar: 8642,
+        epic: 10134
+    }];
+ 
+    $("#rarityChart").dxChart({
+        dataSource: dataSource,
+        commonSeriesSettings: {
+            type: "stackedLine",
+            argumentField: "time"
+        },
+        commonPaneSettings: {
+            border: {
+                visible: true
+            }
+        },
+        commonAxisSettings: {
+            grid: {
+                visible: true
+            }
+        },
+        series: [{
+            valueField: "common",
+            name: "Common"
+        }, {
+            valueField: "uncommon",
+            name: "Uncommon"
+        }, {
+            valueField: "rar",
+            name: "Rar"
+        }, {
+            valueField: "epic",
+            name: "Epic"
+        }],
+        title: "Rariry of tasks:",
+        legend: {
+            verticalAlignment: "bottom",
+            horizontalAlignment: "center"
+        },
+        tooltip: {
+            enabled: true
+        }
+    });
+});
+ 
+$(function ()  
+                {
+   $("#commentsChart").dxChart({
+    dataSource: [
+        {day: "Monday", comments: 3},
+        {day: "Tuesday", comments: 2},
+        {day: "Wednesday", comments: 3},
+        {day: "Thursday", comments: 4},
+        {day: "Friday", comments: 6},
+        {day: "Saturday", comments: 11},
+        {day: "Sunday", comments: 4} ],
+ 
+    series: {
+        argumentField: "day",
+        valueField: "comments",
+        name: "Comments",
+        type: "bar",
+        color: '#ffa500'
+    }
+});
+});
+</script>
+{%endblock%}
+ 
+                

@@ -1,0 +1,35 @@
+<div class="list-group" style="
+    padding: 9px 0;
+    position:fixed;
+    left:84%;
+    top:60px;
+    width:15%;
+    ">
+    <a href="#" class="list-group-item">
+        <h1 align="center">LVL: {{ user.ue_u.current_level }}</h1>
+    </a>
+    <a href="#" id="main_level" class="list-group-item">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: {{ user.ue_u.exp_procent }}%"></div>
+          <div class="progress-bar progress-bar-danger" style="width: {{ user.ue_u.exp_procent_last }}%"></div>
+        </div>
+        <span class="caret"></span>
+
+    <a href="#" id="other_levels" style="display:none;" class="list-group-item">
+    {% for category in user.cul_u.all %}
+    <div class="ELEM">
+        <h6>{{ category.category.title }}  lvl:{{ category.current_level }}</h6>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: {{ category.exp_procent }}%"></div>
+          <div class="progress-bar progress-bar-danger" style="width: {{ category.exp_procent_last }}%"></div>
+        </div>
+    </div>
+    {% endfor %}
+    </a>
+
+    <a href="#" class="list-group-item">
+        {% for achieve in user.ue_u.achievement_list.all %}
+            <img src="{{ achieve.image.url }}" tooltip="{{ achieve.title }}" style="width:45px;height:45px" />
+        {% endfor %}
+    </a>
+</div>

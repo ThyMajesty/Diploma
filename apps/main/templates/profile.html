@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% include 'top_menu.html' %}
+    <div class="col-lg-2">
+        {% include 'left_menu.html' %}
+    </div>
+    <div style="
+    padding: 9px 0;
+    position: relative;
+    left:18%;
+    width:64%;
+    ">
+        {% include 'profile_content.html' %}
+    </div>
+    <div class="col-lg-2">
+        {% include 'right_menu_user.html' %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+        <script>
+        var prog_toggle = false;
+            jQuery(document).ready(function($) {
+      $("#main_level").click(function() {
+      if( prog_toggle ){
+            $("#other_levels").hide();
+            }else {
+                $("#other_levels").show();
+              };
+      prog_toggle = !prog_toggle;
+      });
+});
+        </script>
+{% endblock %}

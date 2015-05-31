@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% include 'top_menu.html' %}
+    <div style="
+padding: 9px 0;
+    position: relative;
+    left:2%;
+    width:96%;
+    ">
+        <div class="row">
+          {% for n in news %}
+          <div class="col-sm-1 col-md-1">
+              <img src="{{ n.image.url }}" style="width:80px;height:80px;" >
+          </div>
+
+          <div class="col-sm-11 col-md-11">
+            <div class="thumbnail">
+              <div class="caption">
+                  <p>{{ n.date_add }}</p>
+                  <h3>{{ n.title }}</h3>
+                  <p>{{ n.content }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

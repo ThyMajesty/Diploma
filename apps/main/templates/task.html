@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% include 'top_menu.html' %}
+    <div class="col-lg-2">
+        {% include 'left_menu.html' %}
+    </div>
+    <div style="
+padding: 9px 0;
+    position: relative;
+    left:19%;
+    width:63%;
+    ">
+        {% include 'task_content.html' %}
+    </div>
+    <div class="col-lg-2">
+        {% include 'right_menu_task.html' %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+        <script>
+jQuery(document).ready(function($) {
+      $("#images_add").click(function() {
+
+            var div = $('<input type="file" name="images" id="images">');
+            $("#images_list").append(div);
+      });
+      });
+        </script>
+
+{% endblock %}

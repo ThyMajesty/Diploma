@@ -1,0 +1,36 @@
+<div class="list-group" style="
+padding: 9px 0;
+    position:fixed;
+    left:84%;
+    top:60px;
+    width:15%;
+    ">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <a href="/user/profile/{{task.user_create.id}}" class="list-group-item">
+        <img src="{{ task.user_create.ue_u.avatar.url }}" style="width:25px;height:25px" class="img-circle">
+        <p>{{task.user_create.ue_u}}</p>
+    </a>
+
+    <a href="#" class="list-group-item">
+        <div class="ELEM">
+            <h6>Members({{task.members_str}}): <span id="member_plus" class="glyphicon glyphicon-plus"></span></h6>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" style="width: {{task.pers_a}}%"></div>
+              <div class="progress-bar progress-bar-warning" style="width: {{task.pers_n}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width: {{task.pers_m}}%"></div>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="list-group-item">
+        <div class="ELEM">
+            <h6>Money({{task.cost_now}}/{{task.cost_need}}$): <span class="glyphicon glyphicon-plus" id="money_plus"></span></h6>
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" style="width: {{task.pers_money_done}}%"></div>
+              <div class="progress-bar progress-bar-danger" style="width: {{task.pers_money_need}}%"></div>
+            </div>
+        </div>
+
+        
+    </a>
+</div>

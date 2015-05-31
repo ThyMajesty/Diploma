@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'top_menu.html' %}
+<div class="col-lg-2">
+    {% include 'left_menu_map.html' %}
+</div>
+
+
+<form id="gettasks" action="/json/geopoints/" method="post">{% csrf_token %}
+</form> 
+</head>
+
+<body>
+<div class="col-lg-10" id="outmap" style="width:500px;height:380px;bacground-color:red;"><div id="status"></div> <div id="mapcanvas"></div></div>  
+<script src="/static/js/outmap.js"></script>
+{% endblock %}

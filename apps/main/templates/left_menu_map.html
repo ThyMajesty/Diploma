@@ -1,0 +1,19 @@
+{% load convert_tags %}
+<div class="list-group" style="
+padding: 9px 0;
+    position:fixed;
+    left:20px;
+    top:60px;
+    width:15%;
+    ">
+	<a href="/map/my" class="list-group-item {% if active_category == 'my' %}active{% endif %}" data-id="my">My</a>
+	<a href="/map/all" class="list-group-item {% if active_category == 'all' %}active{% endif %}" data-id="all">All</a>
+	<a href="/map/last" class="list-group-item {% if active_category == 'last' %}active{% endif %}" data-id="last">Last</a>
+	<a href="/map/available" class="list-group-item {% if active_category == 'available' %}active{% endif %}" data-id="available">Available</a>
+
+
+    {% for category in categories %}
+    	<a href="/map/{{category.id}}/" data-id="{{category.id}}" class="list-group-item {% if active_category|to_int == category.id %}active{% endif %}">{{category.title}}</a>
+    {% endfor %}
+
+</div>
