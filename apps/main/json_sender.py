@@ -24,9 +24,12 @@ def send_all_geo_points(request, action='all'):
     for task in tasks:
         try:
             if task.geojson and not task.geojson == '':
+                print 'zhopa'
+                print task.text_content
                 properties = {}
                 properties['title'] = task.title
                 properties['description'] = task.text_content
+                properties['category'] = task.category.title
                 geometry = json.loads(task.geojson.replace("u'", "\"").replace("': ", "\":").replace("'", "\""))
                 geometry['type'] = 'Point'
                 obj = {'properties': properties, 'geometry': geometry, 'type': 'Feature'}

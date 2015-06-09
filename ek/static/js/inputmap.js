@@ -3,6 +3,14 @@
         data_geojson = document.getElementById("data_geojson");
     addMarker = false;
 
+    function constructMarkerImg(categ) {
+        var st = new google.maps.MarkerImage('/static/icons/' + categ + '.png',
+            new google.maps.Size(32, 32),
+            new google.maps.Point(0, 0));
+        console.log(st, '/static/icons/' + categ + '.png');
+        return st;
+    }
+
     function initialize() {
         mapElem = document.getElementById("inputmap");
         data_geojson = document.getElementById("data_geojson");
