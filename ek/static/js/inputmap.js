@@ -16,11 +16,15 @@
         data_geojson = document.getElementById("data_geojson");
         var mapProp = {
             center: new google.maps.LatLng(50, 30),
-            zoom: 18,
+            zoom: 11,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(mapElem, mapProp);
-
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = new google.maps.LatLng(position.coords.latitude,
+                position.coords.longitude);
+            map.setCenter(pos);
+        });
         google.maps.event.addListener(map, "click", function(event) {
             if (!addMarker) {
                 addMarker = !addMarker;
