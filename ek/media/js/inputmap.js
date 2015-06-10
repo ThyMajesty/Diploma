@@ -4,10 +4,10 @@
     addMarker = false;
 
     function constructMarkerImg(categ) {
-        var st = new google.maps.MarkerImage('/static/icons/' + categ + '.png',
+        var st = new google.maps.MarkerImage('/media/icons/' + categ + '.png',
             new google.maps.Size(32, 32),
             new google.maps.Point(0, 0));
-        console.log(st, '/static/icons/' + categ + '.png');
+        console.log(st, '/media/icons/' + categ + '.png');
         return st;
     }
 
