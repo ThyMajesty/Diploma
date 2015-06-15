@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
+from apps.restapi.views import router
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -35,6 +36,8 @@ urlpatterns = patterns('',
     url(r'^map/(?P<action>\w+)/$', 'apps.main.views.map', name='map'),
     url(r'^json/geopoints/$', 'apps.main.json_sender.send_all_geo_points'),
     url(r'^json/geopoints/(?P<action>\w+)/$', 'apps.main.json_sender.send_all_geo_points'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(router.urls)),
 )
 
 if settings.DEBUG:

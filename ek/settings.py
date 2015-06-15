@@ -130,10 +130,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'rest_framework',
     'south',
 
     'apps.guest',
     'apps.main',
+    'apps.restapi',
 )
 
 # A sample logging configuration. The only tangible logging
